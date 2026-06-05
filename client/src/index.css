@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Neon Scientific Minimalism Theme */
+  --primary: #00f0ff; /* Electric cyan */
+  --primary-foreground: #0f0f1e;
+  --sidebar-primary: #00f0ff;
+  --sidebar-primary-foreground: #0f0f1e;
+  --chart-1: #00f0ff; /* Cyan */
+  --chart-2: #ff00ff; /* Magenta */
+  --chart-3: #00ff41; /* Lime green */
+  --chart-4: #ffd700; /* Gold */
+  --chart-5: #ff1493; /* Deep pink */
+  --radius: 0.25rem; /* Sharp edges for technical feel */
+  --background: #0f0f1e; /* Deep charcoal */
+  --foreground: #e8e8ff; /* Cool white */
+  --card: #1a1a2e; /* Slightly lighter charcoal */
+  --card-foreground: #e8e8ff;
+  --popover: #1a1a2e;
+  --popover-foreground: #e8e8ff;
+  --secondary: #2a2a4e; /* Dark purple-ish */
+  --secondary-foreground: #00f0ff;
+  --muted: #3a3a5e;
+  --muted-foreground: #a8a8d0;
+  --accent: #00f0ff; /* Electric cyan */
+  --accent-foreground: #0f0f1e;
+  --destructive: #ff1493; /* Deep pink for warnings */
+  --destructive-foreground: #e8e8ff;
+  --border: #2a2a4e;
+  --input: #2a2a4e;
+  --ring: #00f0ff;
+  --sidebar: #1a1a2e;
+  --sidebar-foreground: #e8e8ff;
+  --sidebar-accent: #00f0ff;
+  --sidebar-accent-foreground: #0f0f1e;
+  --sidebar-border: #2a2a4e;
+  --sidebar-ring: #00f0ff;
+}
+
+.dark {
+  /* Same neon theme in dark mode */
+  --primary: #00f0ff;
+  --primary-foreground: #0f0f1e;
+  --sidebar-primary: #00f0ff;
+  --sidebar-primary-foreground: #0f0f1e;
+  --background: #0f0f1e;
+  --foreground: #e8e8ff;
+  --card: #1a1a2e;
+  --card-foreground: #e8e8ff;
+  --popover: #1a1a2e;
+  --popover-foreground: #e8e8ff;
+  --secondary: #2a2a4e;
+  --secondary-foreground: #00f0ff;
+  --muted: #3a3a5e;
+  --muted-foreground: #a8a8d0;
+  --accent: #00f0ff;
+  --accent-foreground: #0f0f1e;
+  --destructive: #ff1493;
+  --destructive-foreground: #e8e8ff;
+  --border: #2a2a4e;
+  --input: #2a2a4e;
+  --ring: #00f0ff;
+  --chart-1: #00f0ff;
+  --chart-2: #ff00ff;
+  --chart-3: #00ff41;
+  --chart-4: #ffd700;
+  --chart-5: #ff1493;
+  --sidebar: #1a1a2e;
+  --sidebar-foreground: #e8e8ff;
+  --sidebar-accent: #00f0ff;
+  --sidebar-accent-foreground: #0f0f1e;
+  --sidebar-border: #2a2a4e;
+  --sidebar-ring: #00f0ff;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-mono;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-mono font-bold;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  /* Neon glow effect for interactive elements */
+  .neon-glow {
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    transition: box-shadow 150ms cubic-bezier(0.25, 0, 0.75, 1);
+  }
+
+  .neon-glow:hover {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 40px rgba(0, 240, 255, 0.4);
+  }
+
+  /* Monospace font stack */
+  .font-mono {
+    font-family: 'IBM Plex Mono', 'Roboto Mono', monospace;
+  }
+
+  /* Scanline overlay effect */
+  .scanlines {
+    position: relative;
+  }
+
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 240, 255, 0.02),
+      rgba(0, 240, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+}
