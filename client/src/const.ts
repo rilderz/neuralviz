@@ -1,23 +1,15 @@
 export { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 
-// Generate login URL at runtime so redirect URI reflects the current origin.
-export const getLoginUrl = () => {
+// OAuth is optional. When VITE_OAUTH_PORTAL_URL / VITE_APP_ID are not set,
+// getLoginUrl() returns "/" so any code that still calls it won't throw or
+// redirect users to a broken URL.
+export const getLoginUrl = (): string => {
   const oauthPortalUrl = import.meta.env.VITE_OAUTH_PORTAL_URL;
   const appId = import.meta.env.VITE_APP_ID;
 
-  console.log("VITE_OAUTH_PORTAL_URL:", oauthPortalUrl);
-  console.log("VITE_APP_ID:", appId);
-
-  if (!oauthPortalUrl) {
-    throw new Error(
-      "VITE_OAUTH_PORTAL_URL is not defined. Check your .env file."
-    );
-  }
-
-  if (!appId) {
-    throw new Error(
-      "VITE_APP_ID is not defined. Check your .env file."
-    );
+  if (!oauthPortalUrl || !appId) {
+    // OAuth not configured — fall back to the app root.
+    return "/";
   }
 
   const redirectUri = `${window.location.origin}/api/oauth/callback`;

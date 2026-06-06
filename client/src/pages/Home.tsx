@@ -28,7 +28,6 @@ import {
   LayerActivation,
   GradientData,
 } from '@/lib/dataGenerator';
-import { useAuth } from '@/_core/hooks/useAuth';
 import { useLocation } from 'wouter';
 
 /**
@@ -41,8 +40,6 @@ import { useLocation } from 'wouter';
  * - Monospace typography for technical credibility
  */
 export default function Home() {
-  // Authentication state
-  const { user, loading, isAuthenticated } = useAuth();
   const [, setLocation] = useLocation();
 
   const [isTraining, setIsTraining] = useState(true);
